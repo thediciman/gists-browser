@@ -1,0 +1,20 @@
+.username {
+  margin-left: 1.5%;
+}
+
+.username:hover {
+  user-select: none;
+  cursor: pointer;
+  text-decoration: underline;
+}
+
+li {
+  user-select: none;
+  cursor: pointer;
+}
+
+.avatar-img {
+  vertical-align: middle;
+  width: 32px;
+  height: 32px;
+}

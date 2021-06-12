@@ -16,11 +16,6 @@
   padding: 1% 0 0 2%;
 }
 
-#search-button {
-  float: right;
-  margin-right: 1%;
-}
-
 #pagination-buttons {
   display: flex;
   align-items: center;
@@ -34,7 +29,7 @@
   user-select: none;
   border-style: solid;
   border-color: black;
-  border-width: 0.1px;
+  border-width: 1px;
   display: inline-block;
   border-radius: 5px;
   padding: 0 0.5% 0 0.5%;
@@ -49,11 +44,11 @@
 .description-column {
   user-select: none;
   display: inline-block;
+  padding: 1%;
 }
 
 .description-column:hover {
   cursor: pointer;
   background-color: #ddd;
   border-radius: 10px;
-  padding: 1%;
 }

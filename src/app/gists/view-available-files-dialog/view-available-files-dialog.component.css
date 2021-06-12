@@ -10,7 +10,7 @@ ul {
   user-select: none;
   border-style: solid;
   border-color: black;
-  border-width: 0.1px;
+  border-width: 1px;
   border-radius: 5px;
   padding: 0 0.5% 0 0.5%;
   background-color: #e9f9ff;

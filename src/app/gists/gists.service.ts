@@ -7,6 +7,14 @@ import {Observable} from 'rxjs';
 })
 export class GistsService {
 
+  OAUTH_TOKEN = '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';
+
+  httpOptions = {
+    headers: new HttpHeaders({
+      Authorization: `token ${this.OAUTH_TOKEN}`
+    })
+  };
+
   constructor(private httpClient: HttpClient) {
   }
 
@@ -17,17 +25,11 @@ export class GistsService {
   ) => `https://api.github.com/users/${username}/gists?per_page=${itemsPerPage}&page=${currentPage}`;
 
   getGistsForUsername(username: any, itemsPerPage: number, currentPage: number): Observable<any> {
-    const httpOptions = {
-      headers: new HttpHeaders({
-        Authorization: 'Basic'
-      })
-    };
-
-    return this.httpClient.get(this.GET_GISTS_API_ENDPOINT(username, itemsPerPage, currentPage), httpOptions);
+    return this.httpClient.get(this.GET_GISTS_API_ENDPOINT(username, itemsPerPage, currentPage), this.httpOptions);
   }
 
   getForksForGist(forksUrl: string): Observable<any> {
-    return this.httpClient.get(forksUrl + '?per_page=3');
+    return this.httpClient.get(forksUrl + '?per_page=100', this.httpOptions);
   }
 
   getFileContent(fileUrl: string) {

@@ -5,9 +5,7 @@
 <ul>
   <div *ngFor="let file of filesList">
     <li>
-    <span (click)="displayFileContent(file)" class="filename">
-      {{file.filename}}
-    </span>
+      <span (click)="displayFileContent(file)" class="filename">{{file.filename}}</span>
       <span class="file-tag">#{{file.language}}</span>
     </li>
     <br *ngIf="file !== filesList[filesList.length - 1]">

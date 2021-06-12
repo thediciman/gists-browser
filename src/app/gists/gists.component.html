@@ -8,7 +8,7 @@
     </mat-form-field>
 
     <ng-container>
-      <button (click)="getFirstPageOfGistsForUsername()" [disabled]="!usernameIsValid()" id="search-button" mat-icon-button>
+      <button (click)="getFirstPageOfGistsForUsername()" [disabled]="!usernameIsValid()" mat-icon-button>
         <mat-icon>search</mat-icon>
       </button>
     </ng-container>
@@ -18,13 +18,13 @@
 
     <ng-container matColumnDef="description">
       <th *matHeaderCellDef mat-header-cell mat-sort-header>Description</th>
-      <td *matCellDef="let gist" mat-cell style="width: 60%;">
+      <td *matCellDef="let gist" mat-cell style="width: 55%;">
         <div (click)="displayGist(gist)" class="description-column">{{formatDescription(gist.description)}}</div>
       </td>
     </ng-container>
 
     <ng-container matColumnDef="filesTags">
-      <th *matHeaderCellDef mat-header-cell mat-sort-header>File Tags</th>
+      <th *matHeaderCellDef mat-header-cell>File Tags</th>
       <td *matCellDef="let gist" mat-cell style="width: 27.5%;">
         <div *ngIf="gist.tags.size === 0">No available tags.</div>
         <div *ngIf="gist.tags.size > 0">
@@ -34,15 +34,24 @@
     </ng-container>
 
     <ng-container matColumnDef="creationDate">
-      <th *matHeaderCellDef mat-header-cell mat-sort-header>Creation Date</th>
+      <th *matHeaderCellDef mat-header-cell>Creation Date</th>
       <td *matCellDef="let gist" mat-cell style="width: 12.5%;"> {{formatDate(gist.created_at)}} </td>
     </ng-container>
 
     <ng-container matColumnDef="viewFilesButton">
-      <th *matHeaderCellDef class="button-column" mat-header-cell>Files</th>
-      <td *matCellDef="let gist" mat-cell>
+      <th *matHeaderCellDef mat-header-cell>Files</th>
+      <td *matCellDef="let gist" mat-cell style="width: 7.5%;">
         <button (click)="viewFilesForGist(gist)" mat-icon-button>
           <mat-icon>visibility</mat-icon>
+        </button>
+      </td>
+    </ng-container>
+
+    <ng-container matColumnDef="viewForksButton">
+      <th *matHeaderCellDef mat-header-cell>Forks</th>
+      <td *matCellDef="let gist" mat-cell style="width: 7.5%;">
+        <button (click)="viewForksForGist(gist)" mat-icon-button>
+          <mat-icon>call_split</mat-icon>
         </button>
       </td>
     </ng-container>

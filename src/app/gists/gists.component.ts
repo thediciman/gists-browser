@@ -5,6 +5,7 @@ import {MatSort} from '@angular/material/sort';
 import swal from 'sweetalert2';
 import {MatDialog} from '@angular/material/dialog';
 import {ViewAvailableFilesDialogComponent} from './view-available-files-dialog/view-available-files-dialog.component';
+import {ViewForksDialogComponent} from './view-forks-dialog/view-forks-dialog.component';
 
 @Component({
   selector: 'app-gists',
@@ -13,7 +14,7 @@ import {ViewAvailableFilesDialogComponent} from './view-available-files-dialog/v
 })
 export class GistsComponent implements OnInit {
 
-  displayedColumns: string[] = ['description', 'filesTags', 'creationDate', 'viewFilesButton'];
+  displayedColumns: string[] = ['description', 'filesTags', 'creationDate', 'viewFilesButton', 'viewForksButton'];
 
   itemsPerPageOptions: number[] = [10, 5];
 
@@ -36,6 +37,7 @@ export class GistsComponent implements OnInit {
 
   preprocessGists(gists: any[]): void {
     this.processFilesToTagsForGists(gists);
+    this.fetchForksForGists(gists);
   }
 
   updateDataSource(gists: any[]): void {
@@ -168,6 +170,25 @@ export class GistsComponent implements OnInit {
   viewFilesForGist(gist: any): void {
     this.dialog.open(ViewAvailableFilesDialogComponent, {
       data: gist.files,
+      width: '50%'
+    });
+  }
+
+  fetchForksForGists(gists: any[]) {
+    for (const gist of gists) {
+      this.gistsService
+        .getForksForGist(gist.forks_url)
+        .subscribe(
+          forks => {
+            gist.forks = forks;
+          }
+        );
+    }
+  }
+
+  viewForksForGist(gist: any): void {
+    this.dialog.open(ViewForksDialogComponent, {
+      data: gist.forks,
       width: '50%'
     });
   }

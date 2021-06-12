@@ -18,13 +18,15 @@ import {MatSelectModule} from '@angular/material/select';
 import {ViewFileContentDialogComponent} from './gists/view-file-content-dialog/view-file-content-dialog.component';
 import {MatDialogModule} from '@angular/material/dialog';
 import {ViewAvailableFilesDialogComponent} from './gists/view-available-files-dialog/view-available-files-dialog.component';
+import {ViewForksDialogComponent} from './gists/view-forks-dialog/view-forks-dialog.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     GistsComponent,
     ViewFileContentDialogComponent,
-    ViewAvailableFilesDialogComponent
+    ViewAvailableFilesDialogComponent,
+    ViewForksDialogComponent
   ],
   imports: [
     BrowserModule,
