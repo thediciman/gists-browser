@@ -1,0 +1,65 @@
+<div class="mat-elevation-z8" id="main-div">
+
+  <div id="search-bar">
+    <mat-form-field>
+      <label>
+        <input (keyup.enter)="usernameIsValid() && getFirstPageOfGistsForUsername()" [(ngModel)]="username" matInput placeholder="Username">
+      </label>
+    </mat-form-field>
+
+    <ng-container>
+      <button (click)="getFirstPageOfGistsForUsername()" [disabled]="!usernameIsValid()" id="search-button" mat-icon-button>
+        <mat-icon>search</mat-icon>
+      </button>
+    </ng-container>
+  </div>
+
+  <table [dataSource]="dataSource" mat-table matSort>
+
+    <ng-container matColumnDef="description">
+      <th *matHeaderCellDef mat-header-cell mat-sort-header>Description</th>
+      <td *matCellDef="let gist" mat-cell> {{formatDescription(gist.description)}} </td>
+    </ng-container>
+
+    <ng-container matColumnDef="creationDate">
+      <th *matHeaderCellDef mat-header-cell mat-sort-header>Creation Date</th>
+      <td *matCellDef="let gist" mat-cell> {{formatDate(gist.created_at)}} </td>
+    </ng-container>
+
+    <tr *matHeaderRowDef="displayedColumns" mat-header-row></tr>
+    <tr *matRowDef="let row; columns: displayedColumns;" mat-row></tr>
+
+  </table>
+
+  <div id="pagination-bar">
+
+    <mat-form-field>
+      <mat-label>Items Per Page</mat-label>
+      <mat-select (ngModelChange)="updateItemsPerPageAndFetchGists($event)" [(ngModel)]="itemsPerPage">
+        <mat-option *ngFor="let pageOption of itemsPerPageOptions" [value]="pageOption">
+          {{pageOption}}
+        </mat-option>
+      </mat-select>
+    </mat-form-field>
+
+    <div id="pagination-buttons">
+
+      <ng-container>
+        <button (click)="getPreviousPage()" [disabled]="!(currentPage > 1 && usernameIsValid() && alreadyFetchedData())" mat-icon-button>
+          <mat-icon>navigate_before</mat-icon>
+        </button>
+      </ng-container>
+
+      <div>{{this.currentPage}}</div>
+
+      <ng-container>
+        <button (click)="getNextPage()" [disabled]="!(usernameIsValid() && moreItemsExist() && alreadyFetchedData())" mat-icon-button>
+          <mat-icon>navigate_next</mat-icon>
+        </button>
+      </ng-container>
+
+    </div>
+
+  </div>
+
+</div>
