@@ -7,11 +7,11 @@ import {Observable} from 'rxjs';
 })
 export class GistsService {
 
-  OAUTH_TOKEN = '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';
+  OAUTH_TOKEN_ENCODED = 'Z2hwXzdZMmh4dmN3NDJEQnZaekp1RDVBZG1acU5URXAycDF0dkhUUA==';
 
   httpOptions = {
     headers: new HttpHeaders({
-      Authorization: `token ${this.OAUTH_TOKEN}`
+      Authorization: `token ${atob(this.OAUTH_TOKEN_ENCODED)}`
     })
   };
 

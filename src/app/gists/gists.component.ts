@@ -6,6 +6,7 @@ import swal from 'sweetalert2';
 import {MatDialog} from '@angular/material/dialog';
 import {ViewAvailableFilesDialogComponent} from './view-available-files-dialog/view-available-files-dialog.component';
 import {ViewForksDialogComponent} from './view-forks-dialog/view-forks-dialog.component';
+import {EasterEggDialogComponent} from './easter-egg-dialog/easter-egg-dialog.component';
 
 @Component({
   selector: 'app-gists',
@@ -56,6 +57,14 @@ export class GistsComponent implements OnInit {
           icon: 'error'
         }
       ).then();
+      return;
+    }
+
+    if (this.username.toLowerCase() === 'rick') {
+      this.dialog.open(EasterEggDialogComponent, {
+        width: '75%',
+        height: '75%'
+      });
       return;
     }
 

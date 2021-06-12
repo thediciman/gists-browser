@@ -19,6 +19,7 @@ import {ViewFileContentDialogComponent} from './gists/view-file-content-dialog/v
 import {MatDialogModule} from '@angular/material/dialog';
 import {ViewAvailableFilesDialogComponent} from './gists/view-available-files-dialog/view-available-files-dialog.component';
 import {ViewForksDialogComponent} from './gists/view-forks-dialog/view-forks-dialog.component';
+import { EasterEggDialogComponent } from './gists/easter-egg-dialog/easter-egg-dialog.component';
 
 @NgModule({
   declarations: [
@@ -26,7 +27,8 @@ import {ViewForksDialogComponent} from './gists/view-forks-dialog/view-forks-dia
     GistsComponent,
     ViewFileContentDialogComponent,
     ViewAvailableFilesDialogComponent,
-    ViewForksDialogComponent
+    ViewForksDialogComponent,
+    EasterEggDialogComponent
   ],
   imports: [
     BrowserModule,
