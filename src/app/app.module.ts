@@ -15,11 +15,16 @@ import {MatButtonModule} from '@angular/material/button';
 import {MatSortModule} from '@angular/material/sort';
 import {FormsModule} from '@angular/forms';
 import {MatSelectModule} from '@angular/material/select';
+import {ViewFileContentDialogComponent} from './gists/view-file-content-dialog/view-file-content-dialog.component';
+import {MatDialogModule} from '@angular/material/dialog';
+import {ViewAvailableFilesDialogComponent} from './gists/view-available-files-dialog/view-available-files-dialog.component';
 
 @NgModule({
   declarations: [
     AppComponent,
-    GistsComponent
+    GistsComponent,
+    ViewFileContentDialogComponent,
+    ViewAvailableFilesDialogComponent
   ],
   imports: [
     BrowserModule,
@@ -34,7 +39,8 @@ import {MatSelectModule} from '@angular/material/select';
     MatButtonModule,
     MatSortModule,
     FormsModule,
-    MatSelectModule
+    MatSelectModule,
+    MatDialogModule
   ],
   providers: [],
   bootstrap: [AppComponent]

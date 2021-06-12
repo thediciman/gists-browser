@@ -18,22 +18,33 @@
 
     <ng-container matColumnDef="description">
       <th *matHeaderCellDef mat-header-cell mat-sort-header>Description</th>
-      <td style="width: 60%;" *matCellDef="let gist" mat-cell> {{formatDescription(gist.description)}} </td>
+      <td *matCellDef="let gist" mat-cell style="width: 60%;">
+        <div (click)="displayGist(gist)" class="description-column">{{formatDescription(gist.description)}}</div>
+      </td>
     </ng-container>
 
     <ng-container matColumnDef="filesTags">
       <th *matHeaderCellDef mat-header-cell mat-sort-header>File Tags</th>
-      <td style="width: 27.5%;" *matCellDef="let gist" mat-cell>
+      <td *matCellDef="let gist" mat-cell style="width: 27.5%;">
         <div *ngIf="gist.tags.size === 0">No available tags.</div>
         <div *ngIf="gist.tags.size > 0">
-          <div class="file-tag" *ngFor="let fileLanguage of gist.tags">#{{fileLanguage}}</div>
+          <div *ngFor="let fileLanguage of gist.tags" class="file-tag">#{{fileLanguage}}</div>
         </div>
       </td>
     </ng-container>
 
     <ng-container matColumnDef="creationDate">
       <th *matHeaderCellDef mat-header-cell mat-sort-header>Creation Date</th>
-      <td style="width: 12.5%;" *matCellDef="let gist" mat-cell> {{formatDate(gist.created_at)}} </td>
+      <td *matCellDef="let gist" mat-cell style="width: 12.5%;"> {{formatDate(gist.created_at)}} </td>
+    </ng-container>
+
+    <ng-container matColumnDef="viewFilesButton">
+      <th *matHeaderCellDef class="button-column" mat-header-cell>Files</th>
+      <td *matCellDef="let gist" mat-cell>
+        <button (click)="viewFilesForGist(gist)" mat-icon-button>
+          <mat-icon>visibility</mat-icon>
+        </button>
+      </td>
     </ng-container>
 
     <tr *matHeaderRowDef="displayedColumns" mat-header-row></tr>

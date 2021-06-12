@@ -3,6 +3,8 @@ import {GistsService} from './gists.service';
 import {MatTableDataSource} from '@angular/material/table';
 import {MatSort} from '@angular/material/sort';
 import swal from 'sweetalert2';
+import {MatDialog} from '@angular/material/dialog';
+import {ViewAvailableFilesDialogComponent} from './view-available-files-dialog/view-available-files-dialog.component';
 
 @Component({
   selector: 'app-gists',
@@ -11,7 +13,7 @@ import swal from 'sweetalert2';
 })
 export class GistsComponent implements OnInit {
 
-  displayedColumns: string[] = ['description', 'filesTags', 'creationDate'];
+  displayedColumns: string[] = ['description', 'filesTags', 'creationDate', 'viewFilesButton'];
 
   itemsPerPageOptions: number[] = [10, 5];
 
@@ -25,7 +27,7 @@ export class GistsComponent implements OnInit {
 
   @ViewChild(MatSort) sort: MatSort;
 
-  constructor(private gistsService: GistsService) {
+  constructor(private gistsService: GistsService, private dialog: MatDialog) {
   }
 
   ngOnInit(): void {
@@ -157,6 +159,17 @@ export class GistsComponent implements OnInit {
     }
 
     return new Set(filesLanguagesList);
+  }
+
+  displayGist(gist: any): void {
+    window.open(gist.html_url, '_blank');
+  }
+
+  viewFilesForGist(gist: any): void {
+    this.dialog.open(ViewAvailableFilesDialogComponent, {
+      data: gist.files,
+      width: '50%'
+    });
   }
 
   private processFilesToTagsForGists(gists: any[]) {

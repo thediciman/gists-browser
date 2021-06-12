@@ -1,0 +1,28 @@
+h1 {
+  margin-top: 0;
+}
+
+ul {
+  margin: auto;
+}
+
+.file-tag {
+  user-select: none;
+  border-style: solid;
+  border-color: black;
+  border-width: 0.1px;
+  border-radius: 5px;
+  padding: 0 0.5% 0 0.5%;
+  background-color: #e9f9ff;
+  float: right;
+}
+
+.file-tag:hover {
+  background-color: #d9e9ff;
+}
+
+.filename:hover {
+  user-select: none;
+  cursor: pointer;
+  text-decoration: underline;
+}

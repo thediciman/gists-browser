@@ -39,9 +39,21 @@
   border-radius: 5px;
   padding: 0 0.5% 0 0.5%;
   background-color: #e9f9ff;
-  margin-right: 1.5%;
+  margin: 0.5% 1.5% 0.5% 0;
 }
 
 .file-tag:hover {
   background-color: #d9e9ff;
+}
+
+.description-column {
+  user-select: none;
+  display: inline-block;
+}
+
+.description-column:hover {
+  cursor: pointer;
+  background-color: #ddd;
+  border-radius: 10px;
+  padding: 1%;
 }

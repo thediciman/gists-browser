@@ -30,4 +30,8 @@ export class GistsService {
     return this.httpClient.get(forksUrl + '?per_page=3');
   }
 
+  getFileContent(fileUrl: string) {
+    return this.httpClient.get(fileUrl, {responseType: 'text'});
+  }
+
 }
