@@ -29,3 +29,19 @@
   margin-top: 0.5%;
   transform: scale(1.15);
 }
+
+.file-tag {
+  user-select: none;
+  border-style: solid;
+  border-color: black;
+  border-width: 0.1px;
+  display: inline-block;
+  border-radius: 5px;
+  padding: 0 0.5% 0 0.5%;
+  background-color: #e9f9ff;
+  margin-right: 1.5%;
+}
+
+.file-tag:hover {
+  background-color: #d9e9ff;
+}

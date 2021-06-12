@@ -26,4 +26,8 @@ export class GistsService {
     return this.httpClient.get(this.GET_GISTS_API_ENDPOINT(username, itemsPerPage, currentPage), httpOptions);
   }
 
+  getForksForGist(forksUrl: string): Observable<any> {
+    return this.httpClient.get(forksUrl + '?per_page=3');
+  }
+
 }

@@ -11,7 +11,7 @@ import swal from 'sweetalert2';
 })
 export class GistsComponent implements OnInit {
 
-  displayedColumns: string[] = ['description', 'creationDate'];
+  displayedColumns: string[] = ['description', 'filesTags', 'creationDate'];
 
   itemsPerPageOptions: number[] = [10, 5];
 
@@ -21,7 +21,7 @@ export class GistsComponent implements OnInit {
 
   currentPage = 1;
 
-  username: string = null;
+  username = 'afeld';
 
   @ViewChild(MatSort) sort: MatSort;
 
@@ -29,11 +29,18 @@ export class GistsComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    this.getFirstPageOfGistsForUsername();
   }
 
-  updateDataSource(items: any[]): void {
-    console.log(items);
-    this.dataSource = new MatTableDataSource<any>(items);
+  preprocessGists(gists: any[]): void {
+    this.processFilesToTagsForGists(gists);
+  }
+
+  updateDataSource(gists: any[]): void {
+    this.preprocessGists(gists);
+    console.log(gists);
+
+    this.dataSource = new MatTableDataSource<any>(gists);
     this.dataSource.sort = this.sort;
   }
 
@@ -105,7 +112,7 @@ export class GistsComponent implements OnInit {
   }
 
   formatDescription(description: string): string {
-    return description.length === 0 ? 'No description available.' : description;
+    return description === null || description.length === 0 ? 'No description available.' : description;
   }
 
   formatDate(date: string): string {
@@ -137,6 +144,25 @@ export class GistsComponent implements OnInit {
 
   alreadyFetchedData(): boolean {
     return this.dataSource !== null;
+  }
+
+  transformFilesObjectToFilenamesList(gist: any): Set<any> {
+    const filesLanguagesList = [];
+
+    for (const filePropertyName in gist.files) {
+      const file = gist.files[filePropertyName];
+      if (file.language) {
+        filesLanguagesList.push(file.language);
+      }
+    }
+
+    return new Set(filesLanguagesList);
+  }
+
+  private processFilesToTagsForGists(gists: any[]) {
+    for (const gist of gists) {
+      gist.tags = this.transformFilesObjectToFilenamesList(gist);
+    }
   }
 
 }
