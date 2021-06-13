@@ -3,8 +3,8 @@
 <h1 *ngIf="forks.length > 0" style="margin-top: 0;">These are the {{forks.length}} latest forks.</h1>
 
 <ul style="list-style: none;">
-  <div *ngFor="let fork of forks">
-    <li (click)="navigateToFork(fork)" >
+  <div *ngFor="let fork of forks; trackBy: trackByFn">
+    <li (click)="navigateToFork(fork)">
       <img alt="avatar" class="avatar-img" src="{{fork.owner.avatar_url}}">
       <span class="username">{{fork.owner.login}}</span>
     </li>

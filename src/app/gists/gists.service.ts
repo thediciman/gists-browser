@@ -24,7 +24,7 @@ export class GistsService {
     currentPage: number
   ) => `https://api.github.com/users/${username}/gists?per_page=${itemsPerPage}&page=${currentPage}`;
 
-  getGistsForUsername(username: any, itemsPerPage: number, currentPage: number): Observable<any> {
+  getGistsForUsername(username: string, itemsPerPage: number, currentPage: number): Observable<any> {
     return this.httpClient.get(this.GET_GISTS_API_ENDPOINT(username, itemsPerPage, currentPage), this.httpOptions);
   }
 

@@ -24,4 +24,8 @@ export class ViewForksDialogComponent {
     window.open(fork.html_url, '_blank');
   }
 
+  trackByFn(index, item) {
+    return item.id;
+  }
+
 }

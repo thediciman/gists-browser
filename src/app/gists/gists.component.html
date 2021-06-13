@@ -28,7 +28,7 @@
       <td *matCellDef="let gist" mat-cell style="width: 27.5%;">
         <div *ngIf="gist.tags.size === 0">No available tags.</div>
         <div *ngIf="gist.tags.size > 0">
-          <div *ngFor="let fileLanguage of gist.tags" class="file-tag">#{{fileLanguage}}</div>
+          <div *ngFor="let fileLanguage of gist.tags; trackBy: trackByFn" class="file-tag">#{{fileLanguage}}</div>
         </div>
       </td>
     </ng-container>
@@ -66,7 +66,7 @@
     <mat-form-field>
       <mat-label>Items Per Page</mat-label>
       <mat-select (ngModelChange)="updateItemsPerPageAndFetchGists($event)" [(ngModel)]="itemsPerPage">
-        <mat-option *ngFor="let pageOption of itemsPerPageOptions" [value]="pageOption">
+        <mat-option *ngFor="let pageOption of itemsPerPageOptions; trackBy: trackByFn" [value]="pageOption">
           {{pageOption}}
         </mat-option>
       </mat-select>

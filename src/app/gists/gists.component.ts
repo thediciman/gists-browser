@@ -43,14 +43,12 @@ export class GistsComponent implements OnInit {
 
   updateDataSource(gists: any[]): void {
     this.preprocessGists(gists);
-    console.log(gists);
-
     this.dataSource = new MatTableDataSource<any>(gists);
     this.dataSource.sort = this.sort;
   }
 
   getFirstPageOfGistsForUsername(): void {
-    if (this.username === null || this.username.length === 0) {
+    if (!this.usernameIsValid()) {
       swal.fire(
         {
           title: 'The username should not be empty.',
@@ -96,7 +94,7 @@ export class GistsComponent implements OnInit {
   }
 
   getGistsForUsernameFromCurrentPage(): void {
-    if (this.username === null || this.username.length === 0) {
+    if (!this.usernameIsValid()) {
       swal.fire(
         {
           title: 'The username should not be empty.',
@@ -124,8 +122,12 @@ export class GistsComponent implements OnInit {
       );
   }
 
+  isNonEmptyString(text: string): string {
+    return typeof text !== 'undefined' && text;
+  }
+
   formatDescription(description: string): string {
-    return description === null || description.length === 0 ? 'No description available.' : description;
+    return this.isNonEmptyString(description) ? description : 'No description available.';
   }
 
   formatDate(date: string): string {
@@ -148,11 +150,11 @@ export class GistsComponent implements OnInit {
   }
 
   usernameIsValid(): boolean {
-    return this.username !== null && this.username.length > 0;
+    return this.isNonEmptyString(this.username) && this.username.length > 0;
   }
 
   moreItemsExist(): boolean {
-    return this.dataSource !== null && this.dataSource.filteredData.length === this.itemsPerPage;
+    return this.alreadyFetchedData() && this.dataSource.filteredData.length === this.itemsPerPage;
   }
 
   alreadyFetchedData(): boolean {
@@ -202,7 +204,11 @@ export class GistsComponent implements OnInit {
     });
   }
 
-  private processFilesToTagsForGists(gists: any[]) {
+  trackByFn(index, item) {
+    return item.id;
+  }
+
+  private processFilesToTagsForGists(gists: any[]): void {
     for (const gist of gists) {
       gist.tags = this.transformFilesObjectToFilenamesList(gist);
     }

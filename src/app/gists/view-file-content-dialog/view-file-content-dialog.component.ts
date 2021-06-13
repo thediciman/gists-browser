@@ -9,7 +9,7 @@ import {GistsService} from '../gists.service';
 })
 export class ViewFileContentDialogComponent {
 
-  fileContent: any;
+  fileContent: string;
 
   constructor(
     @Inject(MAT_DIALOG_DATA) public file: any,
@@ -20,7 +20,6 @@ export class ViewFileContentDialogComponent {
       .subscribe(
         content => {
           this.fileContent = content;
-          console.log(content);
         }
       );
   }

@@ -17,7 +17,6 @@ export class ViewAvailableFilesDialogComponent {
   ) {
     this.filesList = [];
     for (const filePropertyName in files) {
-      console.log(files[filePropertyName]);
       this.filesList.push(files[filePropertyName]);
     }
   }
@@ -28,6 +27,10 @@ export class ViewAvailableFilesDialogComponent {
       width: '90%',
       height: '80%'
     });
+  }
+
+  trackByFn(index, item) {
+    return item.id;
   }
 
 }

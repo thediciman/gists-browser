@@ -3,7 +3,7 @@
 </h1>
 
 <ul>
-  <div *ngFor="let file of filesList">
+  <div *ngFor="let file of filesList; trackBy: trackByFn">
     <li>
       <span (click)="displayFileContent(file)" class="filename">{{file.filename}}</span>
       <span class="file-tag">#{{file.language}}</span>
