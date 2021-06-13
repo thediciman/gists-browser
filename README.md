@@ -75,7 +75,7 @@ You will soon be able to access the application at http://localhost:4200 (by def
 
 - restructure the project to use a higher scalable folder structure
 - extract business logic from components and templates to services
-- improve type safety by creating models for the entities received by the API: Gist, File, etc.
+- improve type safety by creating models for the entities received from the API: Gist, File, etc.
 - add a safety feature to deal with very large file contents and not crash the application when displaying the file
 - lazy load the forks for a certain gist when it is required by the user instead of loading all of them when a new page of gists is fetched
   - this one is still debatable, since fetching forks when loading a page will result in a better user experience for the users when they reach for the forks, but will waste API calls for forks that may not be viewed
